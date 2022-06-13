@@ -1,9 +1,10 @@
 import { api } from 'boot/axios';
 import { Player } from 'components/models';
+import { LocationQuery } from 'vue-router';
 
 export function usePlayer() {
-  const fetchPlayer = async () => {
-    const { data } = await api.get<Player[]>('stats/player/');
+  const fetchPlayer = async (query:LocationQuery) => {
+    const { data } = await api.get<Player[]>('stats/player/', {params:query});
     return data;
   };
 

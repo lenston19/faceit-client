@@ -5,7 +5,7 @@
         grid
         grid-header
         title="Игроки"
-        class="full-width text-accent"
+        class="stats-table full-width text-accent"
         :rows="playerList"
         :columns="columns"
         :filter="customFilter"
@@ -39,6 +39,9 @@
 import { onMounted, ref } from 'vue';
 import { Player } from 'components/models';
 import { usePlayer } from '../hooks/usePlayer';
+import { useRoute } from 'vue-router';
+
+const $route = useRoute();
 
 const columns = [
   {
@@ -57,6 +60,18 @@ const columns = [
     name: 'nickname',
     label: 'Никнейм',
     field: 'nickname',
+    sortable: true,
+  },
+  {
+    name: 'group',
+    label: 'Группа',
+    field: (playerList) => playerList.group.name,
+    sortable: true,
+  },
+  {
+    name: 'faculty',
+    label: 'Факультет',
+    field: (playerList) => playerList.group.faculty.name,
     sortable: true,
   },
   {
@@ -95,9 +110,7 @@ const playerList = ref<Player[]>([]);
 
 onMounted(async () => {
   isLoading.value = true;
-  playerList.value = await fetchPlayer();
-  console.log(playerList.value);
-
+  playerList.value = await fetchPlayer($route.query);
   isLoading.value = false;
 });
 </script>

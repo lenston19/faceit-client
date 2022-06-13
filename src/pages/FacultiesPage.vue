@@ -6,13 +6,17 @@
         :key="faculty.name"
         class="col-12 col-md-4 col-lg-4"
       >
-        <q-card style="min-heigth: 200px; height: 100%">
-          <q-card-section>
-            <div class="text-h6">
-              {{ faculty.name }}
-            </div>
-          </q-card-section>
-        </q-card>
+        <q-btn
+          style="min-heigth: 200px; height: 100%;"
+          class="full-width bg-accent text-black"
+          :label="faculty.name"
+          @click="
+            $router.push({
+              name: 'players',
+              query: { group__faculty: faculty.id },
+            })
+          "
+        />
       </div>
     </div>
   </q-page>

@@ -6,19 +6,26 @@
         :key="group.name"
         class="col-12 col-md-3 col-lg-4"
       >
-        <q-card style="min-heigth: 200px; height: 100%">
-          <q-card-section>
+        <q-btn
+          style="min-heigth: 200px; height: 100%;"
+          class="full-width bg-accent text-black"
+          @click="
+            $router.push({
+              name: 'players',
+              query: { group: group.id },
+            })
+          "
+        >
+          <div class="col">
             <div class="text-h5 text-center">
               {{ group.name }}
             </div>
-          </q-card-section>
-          <q-card-section>
             <div class="text-center">
               Факультет <br />"<b>{{ group.faculty.name }}</b
               >"
             </div>
-          </q-card-section>
-        </q-card>
+          </div>
+        </q-btn>
       </div>
     </div>
   </q-page>
