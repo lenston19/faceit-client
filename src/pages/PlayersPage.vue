@@ -1,15 +1,33 @@
 <template>
   <q-page class="q-container">
-    <div class="row q-col-gutter-md justify-center q-py-md">
-      <div v-for="player in PlayerList" :key="player.nickname" class="col-12 col-md-3 col-lg-4">
-        <q-card style="min-heigth: 200px; height: 100%">
-          <q-card-section>
-            <div class="text-h5">
-              {{ player.nickname }}
-            </div>
-          </q-card-section>
-        </q-card>
-      </div>
+    <div class="row q-py-md">
+      <q-table
+        grid
+        grid-header
+        title="Игроки"
+        class="full-width text-accent"
+        :rows="playerList"
+        :columns="columns"
+        :filter="customFilter"
+        row-key="name"
+        hide-header
+        hide-bottom
+        :pagination="{ rowsPerPage: 0 }"
+        ><template v-slot:top-right>
+          <q-input
+            borderless
+            dense
+            dark
+            debounce="300"
+            v-model="customFilter"
+            placeholder="Поиск"
+          >
+            <template v-slot:append>
+              <q-icon name="search" color="accent" />
+            </template>
+          </q-input>
+        </template>
+      </q-table>
     </div>
   </q-page>
   <q-inner-loading dark :showing="isLoading">
@@ -19,17 +37,73 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { Player } from 'components/models'
+import { Player } from 'components/models';
 import { usePlayer } from '../hooks/usePlayer';
 
-const { fetchPlayer } = usePlayer()
+const columns = [
+  {
+    name: 'firstName',
+    label: 'Имя',
+    field: 'firstName',
+    sortable: true,
+  },
+  {
+    name: 'lastName',
+    label: 'Фамилия',
+    field: 'lastName',
+    sortable: true,
+  },
+  {
+    name: 'nickname',
+    label: 'Никнейм',
+    field: 'nickname',
+    sortable: true,
+  },
+  {
+    name: 'elo',
+    label: 'ELO',
+    field: (playerList) => playerList.csgoStats.elo,
+    sortable: true,
+  },
+  {
+    name: 'csgoStats.kdRatio',
+    label: 'Всего У/С',
+    field: (playerList) => playerList.csgoStats.kdRatio,
+    sortable: true,
+  },
+  {
+    name: 'csgoStats.averageKdRatio',
+    label: 'Ср. кол. У/C',
+    field: (playerList) => playerList.csgoStats.averageKdRatio,
 
+    sortable: true,
+  },
+  {
+    name: 'csgoStats.averageHs',
+    label: 'Ср. кол. ХШ',
+    field: (playerList) => playerList.csgoStats.averageHs,
+
+    sortable: true,
+  },
+  {
+    name: 'csgoStats.winRate',
+    label: 'Доля побед %',
+    field: (playerList) => playerList.csgoStats.winRate,
+    sortable: true,
+  },
+];
+
+const { fetchPlayer } = usePlayer();
+
+const customFilter = ref<string>('');
 const isLoading = ref<boolean>(true);
-const PlayerList = ref<Player[]>([])
+const playerList = ref<Player[]>([]);
 
 onMounted(async () => {
   isLoading.value = true;
-  PlayerList.value = await fetchPlayer()
+  playerList.value = await fetchPlayer();
+  console.log(playerList.value);
+
   isLoading.value = false;
-})
+});
 </script>
