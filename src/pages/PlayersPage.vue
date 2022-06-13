@@ -66,27 +66,21 @@ const columns = [
     sortable: true,
   },
   {
-    name: 'csgoStats.kdRatio',
-    label: 'Всего У/С',
-    field: (playerList) => playerList.csgoStats.kdRatio,
-    sortable: true,
-  },
-  {
-    name: 'csgoStats.averageKdRatio',
+    name: 'averageKdRatio',
     label: 'Ср. кол. У/C',
     field: (playerList) => playerList.csgoStats.averageKdRatio,
 
     sortable: true,
   },
   {
-    name: 'csgoStats.averageHs',
+    name: 'averageHs',
     label: 'Ср. кол. ХШ',
     field: (playerList) => playerList.csgoStats.averageHs,
 
     sortable: true,
   },
   {
-    name: 'csgoStats.winRate',
+    name: 'winRate',
     label: 'Доля побед %',
     field: (playerList) => playerList.csgoStats.winRate,
     sortable: true,
