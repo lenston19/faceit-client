@@ -2,7 +2,7 @@
   <q-page class="q-container" style="min-heigth: 100vh">
     <div class="row q-col-gutter-md justify-center q-py-md">
       <div v-for="player in PlayerList" :key="player.nickname" class="col-12 col-md-3 col-lg-4">
-        <q-card>
+        <q-card style="min-heigth: 200px; height: 100%">
           <q-card-section>
             <div class="text-h5">
               {{ player.nickname }}
