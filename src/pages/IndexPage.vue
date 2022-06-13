@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <q-img
-          style="height: 500px; width: 100%"
+          class="main__img"
           src="~assets/CyberLight.jpg"
         />
       </div>
