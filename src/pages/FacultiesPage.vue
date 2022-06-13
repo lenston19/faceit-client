@@ -12,6 +12,9 @@
       </div>
     </div>
   </q-page>
+  <q-inner-loading dark :showing="isLoading">
+    <q-spinner-pie class="fixed-center" size="50px" color="secondary" />
+  </q-inner-loading>
 </template>
 
 <script setup lang="ts">
@@ -21,10 +24,13 @@ import { useFaculty } from '../hooks/useFaculty';
 
 const { fetchFaculty } = useFaculty()
 
+const isLoading = ref<boolean>(true);
 const facultyList = ref<Faculty[]>([])
 
 onMounted(async () => {
+  isLoading.value = true;
   facultyList.value = await fetchFaculty()
+  isLoading.value = false;
 })
 
 </script>

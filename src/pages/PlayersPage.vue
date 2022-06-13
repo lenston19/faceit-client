@@ -12,6 +12,9 @@
       </div>
     </div>
   </q-page>
+  <q-inner-loading dark :showing="isLoading">
+    <q-spinner-pie class="fixed-center" size="50px" color="secondary" />
+  </q-inner-loading>
 </template>
 
 <script setup lang="ts">
@@ -21,9 +24,12 @@ import { usePlayer } from '../hooks/usePlayer';
 
 const { fetchPlayer } = usePlayer()
 
+const isLoading = ref<boolean>(true);
 const PlayerList = ref<Player[]>([])
 
 onMounted(async () => {
+  isLoading.value = true;
   PlayerList.value = await fetchPlayer()
+  isLoading.value = false;
 })
 </script>
