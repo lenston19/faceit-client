@@ -17,7 +17,7 @@
       </q-tabs>
     </q-header>
 
-    <q-page-container>
+    <q-page-container class="bg-primary">
       <router-view />
     </q-page-container>
 
