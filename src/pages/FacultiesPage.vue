@@ -1,7 +1,11 @@
 <template>
   <q-page class="q-container">
     <div class="row q-col-gutter-md justify-center q-py-md">
-      <div v-for="faculty in facultyList" :key="faculty.name" class="col-12 col-md-4 col-lg-4">
+      <div
+        v-for="faculty in facultyList"
+        :key="faculty.name"
+        class="col-12 col-md-4 col-lg-4"
+      >
         <q-card style="min-heigth: 200px; height: 100%">
           <q-card-section>
             <div class="text-h6">
@@ -19,18 +23,17 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { Faculty } from 'components/models'
+import { Faculty } from 'components/models';
 import { useFaculty } from '../hooks/useFaculty';
 
-const { fetchFaculty } = useFaculty()
+const { fetchFaculty } = useFaculty();
 
 const isLoading = ref<boolean>(true);
-const facultyList = ref<Faculty[]>([])
+const facultyList = ref<Faculty[]>([]);
 
 onMounted(async () => {
   isLoading.value = true;
-  facultyList.value = await fetchFaculty()
+  facultyList.value = await fetchFaculty();
   isLoading.value = false;
-})
-
+});
 </script>
