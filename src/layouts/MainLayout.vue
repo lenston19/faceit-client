@@ -17,7 +17,7 @@
       </q-tabs>
     </q-header>
 
-    <q-page-container class="bg-primary">
+    <q-page-container class="bg-primary" style="min-height: 100vh">
       <router-view />
     </q-page-container>
 

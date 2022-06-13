@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-container" style="min-heigth: 100vh">
+  <q-page class="q-container">
     <div class="row q-col-gutter-md justify-center q-py-md">
       <div v-for="group in GroupList" :key="group.name" class="col-12 col-md-3 col-lg-4">
         <q-card style="min-heigth: 200px; height: 100%">
