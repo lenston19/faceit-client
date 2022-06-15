@@ -30,6 +30,7 @@
           <p v-for="(value, key) in playerData[game.key]" :key="key + value">
             {{ key }}-{{ value }}
           </p>
+          <StatsChart :playerId="playerData.faceitId" :gameId="game.faceitId" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -44,6 +45,7 @@ import { onMounted, ref, computed } from 'vue';
 import { Player } from 'components/models';
 import { usePlayer } from 'src/hooks/usePlayer';
 import { useRoute } from 'vue-router';
+import StatsChart from 'src/components/StatsChart.vue';
 
 const $route = useRoute();
 

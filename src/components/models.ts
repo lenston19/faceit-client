@@ -15,6 +15,7 @@ export interface Player {
   lastName?: string;
   patronymic?: string;
   nickname: string;
+  faceitId: string;
 }
 export interface CSGOStats {
   elo: number;
