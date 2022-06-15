@@ -14,7 +14,7 @@ declare module '@vue/runtime-core' {
 // "export default () => {}" function below (which runs individually
 // for each client)
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api/v1/',
+  baseURL: 'http://faceit-ktiib.herokuapp.com/api/v1/',
 });
 
 export default boot(({ app }) => {
