@@ -8,6 +8,7 @@ export interface Group {
   faculty: Faculty;
 }
 export interface Player {
+  id: number;
   csgoStats: CSGOStats;
   group: Group;
   firstName?: string;

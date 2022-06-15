@@ -11,25 +11,15 @@ const routes: RouteRecordRaw[] = [
         component: () => import('pages/IndexPage.vue'),
       },
       {
-        name: 'faculties',
-        path: '/faculties',
-        component: () => import('src/pages/FacultiesPage.vue'),
-      },
-      {
-        name: 'groups',
-        path: '/groups',
-        component: () => import('src/pages/GroupsPage.vue'),
-      },
-      {
         name: 'players',
         path: '/players',
         component: () => import('src/pages/PlayersPage.vue'),
       },
       {
-        name: 'games',
-        path: '/games',
-        component: () => import('src/pages/GamesPage.vue'),
-      },
+        name: 'playerDetail',
+        path: '/players/:id',
+        component: () => import('src/pages/PlayerDetailPage.vue'),
+      }
     ],
   },
 
