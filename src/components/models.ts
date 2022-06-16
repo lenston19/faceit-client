@@ -10,6 +10,7 @@ export interface Group {
 export interface Player {
   id: number;
   csgoStats: CSGOStats;
+  dota2Stats: Dota2Stats;
   group: Group;
   firstName?: string;
   lastName?: string;
@@ -18,10 +19,21 @@ export interface Player {
   faceitId: string;
 }
 export interface CSGOStats {
+  id?: number;
   elo: number;
   kdRatio: number;
   averageKdRatio: number;
   averageHs: number;
   winRate: number;
-  player: number;
+  player?: number;
+}
+
+export interface Dota2Stats {
+  id?: number;
+  elo: number;
+  kdRatio: number;
+  averageKdRatio: number;
+  averageGm: number;
+  winRate: number;
+  player?: number;
 }
