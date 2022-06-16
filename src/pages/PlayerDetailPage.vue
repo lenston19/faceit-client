@@ -98,10 +98,12 @@ onMounted(async () => {
   playerData.value = await getPlayerById(Number($route.params.id));
   if (playerData.value.csgoStats !== null) {
     delete playerData.value.csgoStats.player;
+    delete playerData.value.csgoStats.kdRatio;
     delete playerData.value.csgoStats.id;
   }
   if (playerData.value.dota2Stats !== null) {
     delete playerData.value.dota2Stats.player;
+    delete playerData.value.dota2Stats.kdRatio;
     delete playerData.value.dota2Stats.id;
   }
   selectedGame.value =

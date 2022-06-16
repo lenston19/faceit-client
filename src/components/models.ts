@@ -21,7 +21,7 @@ export interface Player {
 export interface CSGOStats {
   id?: number;
   elo: number;
-  kdRatio: number;
+  kdRatio?: number;
   averageKdRatio: number;
   averageHs: number;
   winRate: number;
@@ -31,7 +31,7 @@ export interface CSGOStats {
 export interface Dota2Stats {
   id?: number;
   elo: number;
-  kdRatio: number;
+  kdRatio?: number;
   averageKdRatio: number;
   averageGm: number;
   winRate: number;
