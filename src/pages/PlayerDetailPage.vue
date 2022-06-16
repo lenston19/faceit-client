@@ -1,7 +1,12 @@
 <template>
-  <q-page class="q-container">
-    {{ playerData }}
-    <q-card v-if="filteredGames">
+  <q-page class="q-container q-py-md">
+    <q-btn
+      icon="las la-arrow-left"
+      color="secondary"
+      label="Игроки"
+      :to="{ name: 'players' }"
+    />
+    <q-card class="q-my-md" v-if="filteredGames">
       <q-tabs
         v-model="selectedGame"
         dense
@@ -18,7 +23,6 @@
           :name="game.faceitId"
         />
       </q-tabs>
-
       <q-separator />
 
       <q-tab-panels v-model="selectedGame" animated>
@@ -27,9 +31,26 @@
           :key="game.id"
           :name="game.faceitId"
         >
-          <p v-for="(value, key) in playerData[game.key]" :key="key + value">
-            {{ key }}-{{ value }}
-          </p>
+          <div class="text-h6">
+            {{ playerData?.firstName }} ({{ playerData?.nickname }})
+            {{ playerData?.lastName }}
+          </div>
+          <div class="row justify-center">
+            <q-list bordered class="col-12 col-md-6 q-mb-md">
+              <q-item
+                v-for="(value, key) in playerData[game.key]"
+                :key="key + value"
+              >
+                <q-item-section>
+                  <q-item-label class="text-overline">{{ key }}</q-item-label>
+                </q-item-section>
+
+                <q-item-section side center>
+                  <q-badge color="secondary" :label="value" />
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </div>
           <StatsChart :playerId="playerData.faceitId" :gameId="game.faceitId" />
         </q-tab-panel>
       </q-tab-panels>
@@ -75,6 +96,14 @@ const filteredGames = computed(() =>
 onMounted(async () => {
   isLoading.value = true;
   playerData.value = await getPlayerById(Number($route.params.id));
+  if (playerData.value.csgoStats !== null) {
+    delete playerData.value.csgoStats.player;
+    delete playerData.value.csgoStats.id;
+  }
+  if (playerData.value.dota2Stats !== null) {
+    delete playerData.value.dota2Stats.player;
+    delete playerData.value.dota2Stats.id;
+  }
   selectedGame.value =
     filteredGames.value[0] && filteredGames.value[0].faceitId;
   isLoading.value = false;
